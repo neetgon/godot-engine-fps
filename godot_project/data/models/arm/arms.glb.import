@@ -42,7 +42,7 @@ materials/extract_path=""
 _subresources={
 "animations": {
 "glock_17_aim_idle_loop": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/glock_17_aim_idle_loop.res",
 "save_to_file/keep_custom_tracks": false,
 "save_to_file/path": "uid://clsavkn2we0b",
@@ -2098,7 +2098,7 @@ _subresources={
 "slices/amount": 0
 },
 "glock_17_fire": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/glock_17_fire.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://dgu5hqqjb4wk8",
@@ -4154,7 +4154,7 @@ _subresources={
 "slices/amount": 0
 },
 "glock_17_fire_empty": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/glock_17_fire_empty.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://coibbyaf43l",
@@ -6210,7 +6210,7 @@ _subresources={
 "slices/amount": 0
 },
 "glock_17_in": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/glock_17_in.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://b1llke4snrwu3",
@@ -8266,7 +8266,7 @@ _subresources={
 "slices/amount": 0
 },
 "glock_17_inspect": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/glock_17_inspect.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://dyocy6byiqynt",
@@ -10322,7 +10322,7 @@ _subresources={
 "slices/amount": 0
 },
 "glock_17_out": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/glock_17_out.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://y26n8dhnf7lj",
@@ -12378,7 +12378,7 @@ _subresources={
 "slices/amount": 0
 },
 "glock_17_reload": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/glock_17_reload.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://ecw67tqijlpx",
@@ -14434,7 +14434,7 @@ _subresources={
 "slices/amount": 0
 },
 "glock_17_reload_empty": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/glock_17_reload_empty.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://calyv030cush7",
@@ -16490,7 +16490,7 @@ _subresources={
 "slices/amount": 0
 },
 "mauser_c96_aim_idle_loop": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/mauser_c96_aim_idle_loop.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://degm2sx4jixgk",
@@ -18546,7 +18546,7 @@ _subresources={
 "slices/amount": 0
 },
 "mauser_c96_fire": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/mauser_c96_fire.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://gc5yb0t0n56h",
@@ -20602,7 +20602,7 @@ _subresources={
 "slices/amount": 0
 },
 "mauser_c96_fire_empty": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/mauser_c96_fire_empty.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://bn6glescbioov",
@@ -22658,7 +22658,7 @@ _subresources={
 "slices/amount": 0
 },
 "mauser_c96_in": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/mauser_c96_in.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://rkvmw1b28f0m",
@@ -24714,7 +24714,7 @@ _subresources={
 "slices/amount": 0
 },
 "mauser_c96_inspect": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/mauser_c96_inspect.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://bt4bj2j475bt4",
@@ -26770,7 +26770,7 @@ _subresources={
 "slices/amount": 0
 },
 "mauser_c96_lock": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/mauser_c96_lock.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://7kimrgcin5xx",
@@ -28826,7 +28826,7 @@ _subresources={
 "slices/amount": 0
 },
 "mauser_c96_out": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/mauser_c96_out.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://b7iso5py3iwrh",
@@ -30882,7 +30882,7 @@ _subresources={
 "slices/amount": 0
 },
 "mauser_c96_reload": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/mauser_c96_reload.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://dftn8i5vemj8g",
@@ -32938,7 +32938,7 @@ _subresources={
 "slices/amount": 0
 },
 "mauser_c96_unlock": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/arm/animations/mauser_c96_unlock.res",
 "save_to_file/keep_custom_tracks": "",
 "save_to_file/path": "uid://cg80mqmd685c1",
@@ -34992,6 +34992,13 @@ _subresources={
 "slice_99/save_to_file/path": "",
 "slice_99/start_frame": 0,
 "slices/amount": 0
+}
+},
+"materials": {
+"Arms": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://data/models/arm/materials/arms.material",
+"use_external/path": "uid://b6xupqftbw8rl"
 }
 }
 }

@@ -42,7 +42,7 @@ materials/extract_path=""
 _subresources={
 "animations": {
 "glock_17_aim_idle_loop": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/weapons/glock_17/animations/glock_17_aim_idle_loop.res",
 "save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://bexepljc4cld5",
@@ -2098,9 +2098,9 @@ _subresources={
 "slices/amount": 0
 },
 "glock_17_fire": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/weapons/glock_17/animations/glock_17_fire.res",
-"save_to_file/keep_custom_tracks": true,
+"save_to_file/keep_custom_tracks": false,
 "save_to_file/path": "uid://ccs5sa2eorj8k",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
@@ -4154,7 +4154,7 @@ _subresources={
 "slices/amount": 0
 },
 "glock_17_fire_empty": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/weapons/glock_17/animations/glock_17_fire_empty.res",
 "save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://c1pveekcnxs8y",
@@ -6210,7 +6210,7 @@ _subresources={
 "slices/amount": 0
 },
 "glock_17_in": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/weapons/glock_17/animations/glock_17_in.res",
 "save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://ciu3wxhtu8kp0",
@@ -8266,7 +8266,7 @@ _subresources={
 "slices/amount": 0
 },
 "glock_17_inspect": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/weapons/glock_17/animations/glock_17_inspect.res",
 "save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://2b4i3mryjbdx",
@@ -10322,7 +10322,7 @@ _subresources={
 "slices/amount": 0
 },
 "glock_17_out": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/weapons/glock_17/animations/glock_17_out.res",
 "save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://bldjve2dygs56",
@@ -12378,7 +12378,7 @@ _subresources={
 "slices/amount": 0
 },
 "glock_17_reload": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/weapons/glock_17/animations/glock_17_reload.res",
 "save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://buc0ffv8184v6",
@@ -14434,7 +14434,7 @@ _subresources={
 "slices/amount": 0
 },
 "glock_17_reload_empty": {
-"save_to_file/enabled": true,
+"save_to_file/enabled": false,
 "save_to_file/fallback_path": "res://data/models/weapons/glock_17/animations/glock_17_reload_empty.res",
 "save_to_file/keep_custom_tracks": true,
 "save_to_file/path": "uid://bkch0fm1qtwml",

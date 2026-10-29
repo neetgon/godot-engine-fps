@@ -14,13 +14,23 @@ var neck_start_position : Vector3;
 
 @export var raycast : RayCast3D;
 
+var rotation_offset : Vector3;
+
 func _init() -> void:
 	Global.player_camera = self;
 
 func _ready() -> void:
 	default_fov = fov;
+	top_level = true;
 
 func _physics_process(_delta: float) -> void:
+	rotation_offset.x = lerp_angle(rotation_offset.x, 0.0, 5.0 * _delta);
+	rotation_offset.y = lerp_angle(rotation_offset.y, 0.0, 5.0 * _delta);
+	rotation_offset.z = lerp_angle(rotation_offset.z, 0.0, 5.0 * _delta);
+	
+	position = get_parent().global_position;
+	rotation = get_parent().global_rotation + rotation_offset;
+	
 	var state = player.player_state.get_current_state();
 	match state:
 		"idle", "walking", "crouch", "running":
@@ -68,28 +78,5 @@ func neck_walking_animation(force : float, speed : float, _delta : float) -> voi
 		
 		position.y = lerpf(position.y, (neck_animation_position - 0.5) * force, _delta);
 
-var shake_tween : Tween;
-
-func camera_shake(h : float, v : float, duration : float) -> void:
-	v *= 0.1; h *= 0.1;
-	
-	if shake_tween and shake_tween.is_running():
-		shake_tween.kill();
-
-	shake_tween = create_tween();
-	var original_position : Vector3 = position;
-	var elapsed : float = 0.0;
-	var interval : float = 0.035;
-
-	while elapsed < duration:
-		var step : float = minf(interval, duration - elapsed);
-		var target : Vector3 = original_position + Vector3(
-			randf_range(-h, h),
-			randf_range(-v, v),
-			0.0
-		);
-
-		shake_tween.tween_property(self, "position", target, step * 0.5);
-		shake_tween.tween_property(self, "position", original_position, step * 0.5);
-
-		elapsed += step;
+func apply_rotation_offset(offset : Vector3) -> void:
+	rotation_offset += offset;

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cjj671c4us1qr"]
+
+[ext_resource type="Script" uid="uid://c25dhrr1a8d8u" path="res://data/scripts/weapons/mauser_c96.gd" id="1_tb2u5"]
+[ext_resource type="AudioStream" uid="uid://veh4u12w7fli" path="res://data/sounds/weapons/kriss/draw.ogg" id="2_g2pks"]
+[ext_resource type="AudioStream" uid="uid://cdssw81ittgj8" path="res://data/sounds/weapons/mk_23/reload.ogg" id="3_n4ygy"]
+[ext_resource type="AudioStream" uid="uid://hjy35whw6qxv" path="res://data/sounds/weapons/mk_23/fire.ogg" id="4_8mrdt"]
+[ext_resource type="AudioStream" uid="uid://clexkhq3e8pik" path="res://data/sounds/weapons/kriss/out.ogg" id="5_pmnwu"]
+[ext_resource type="PackedScene" uid="uid://cfhgh7ig7qm1d" path="res://data/models/weapons/mauser_c96/mauser_c96.glb" id="6_hsbmv"]
+
+[node name="MauserC96" type="Node3D" unique_id=733268565 node_paths=PackedStringArray("offset", "weapon_animation_player", "muzzle_point")]
+script = ExtResource("1_tb2u5")
+offset = NodePath("MauserC96/MauserC96Armature")
+weapon_id = "mauser_c96"
+weapon_animation_player = NodePath("MauserC96/AnimationPlayer")
+muzzle_point = NodePath("MauserC96/MauserC96Armature/Skeleton3D/Root/MuzzelPoint")
+draw_audio = ExtResource("2_g2pks")
+reload_audio = ExtResource("3_n4ygy")
+fire_audio = ExtResource("4_8mrdt")
+fire_empty_audio = ExtResource("5_pmnwu")
+
+[node name="MauserC96" parent="." unique_id=2138353725 instance=ExtResource("6_hsbmv")]
+
+[node name="Parabellum9X19MMMagazine" parent="MauserC96/MauserC96Armature/Skeleton3D" parent_id_path=PackedInt32Array(2138353725, 2100585402) index="2" unique_id=1837994304]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.14647008)
+
+[editable path="MauserC96"]
