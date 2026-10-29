@@ -11,13 +11,12 @@
 [ext_resource type="AudioStream" uid="uid://djrr45oe2xui2" path="res://data/sounds/player/ladder/default_ladder_footsteps_4.ogg" id="9_t47yx"]
 [ext_resource type="PackedScene" uid="uid://cjjmyq74j1v8h" path="res://data/models/arm/arms.glb" id="10_3haav"]
 [ext_resource type="Script" uid="uid://cjy1dqqc3y7p1" path="res://data/scripts/player/player_viewmodel.gd" id="10_ww2m0"]
+[ext_resource type="Script" uid="uid://bjfpm36rdxs7m" path="res://data/scripts/weapon_manager.gd" id="11_2c71y"]
 [ext_resource type="PackedScene" uid="uid://sqd5022b8akt" path="res://data/models/weapons/glock_17/glock_17.glb" id="11_jsso6"]
-[ext_resource type="Script" uid="uid://ouynqu6gjjd1" path="res://data/scripts/weapons/arms_and_weapon.gd" id="11_luwjy"]
 [ext_resource type="Material" uid="uid://b6xupqftbw8rl" path="res://data/models/arm/materials/arms.material" id="12_jsso6"]
-[ext_resource type="Script" uid="uid://brcpe88fn55bp" path="res://data/scripts/weapons/glock_17/glock_17.gd" id="12_toouh"]
-[ext_resource type="PackedScene" uid="uid://kn3yc3tl1j4p" path="res://data/scenes/bullet_hole.tscn" id="13_iy2d7"]
 [ext_resource type="Texture2D" uid="uid://ctpj008gqmtty" path="res://data/textures/fire_shot/fire_shot.png" id="15_iy2d7"]
 [ext_resource type="Shader" uid="uid://c7t2dr8dmaudx" path="res://data/shaders/toon.gdshader" id="16_luwjy"]
+[ext_resource type="PackedScene" uid="uid://3l40xuteev7b" path="res://data/models/weapons/mauser_c96/mauser_c96.glb" id="20_2c71y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2648x"]
 radius = 0.3
@@ -220,90 +219,6 @@ bind/48/name = &"RightUpperArmTweak"
 bind/48/bone = -1
 bind/48/pose = Transform3D(-1, 0, 6.929038e-07, 1.4901118e-08, 1, -6.705522e-08, -6.5192563e-07, 0, -0.99999976, 0.55797213, 0.0039612087, 0.064270146)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jsso6"]
-animation = &"glock_17_fire"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wlg4u"]
-animation = &"glock_17_fire_empty"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_08vgp"]
-animation = &"glock_17_aim_idle_loop"
-
-[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_wlg4u"]
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_toouh"]
-
-[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_wlg4u"]
-
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_luwjy"]
-input_0/name = "IDLE"
-input_0/auto_advance = false
-input_0/break_loop_at_end = false
-input_0/reset = true
-input_1/name = "INSPECT"
-input_1/auto_advance = false
-input_1/break_loop_at_end = false
-input_1/reset = true
-input_2/name = "IN"
-input_2/auto_advance = false
-input_2/break_loop_at_end = false
-input_2/reset = true
-input_3/name = "OUT"
-input_3/auto_advance = false
-input_3/break_loop_at_end = false
-input_3/reset = true
-
-[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_iy2d7"]
-input_0/name = "normal"
-input_0/auto_advance = false
-input_0/break_loop_at_end = false
-input_0/reset = true
-input_1/name = "empty"
-input_1/auto_advance = false
-input_1/break_loop_at_end = false
-input_1/reset = true
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_toouh"]
-animation = &"glock_17_reload"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iy2d7"]
-animation = &"glock_17_in"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c01vk"]
-animation = &"glock_17_inspect"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_luwjy"]
-animation = &"glock_17_out"
-
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_jsso6"]
-graph_offset = Vector2(-804.97595, 112.284744)
-nodes/output/position = Vector2(780, 100)
-nodes/Animation/node = SubResource("AnimationNodeAnimation_08vgp")
-nodes/Animation/position = Vector2(-840, 140)
-nodes/Fire/node = SubResource("AnimationNodeOneShot_toouh")
-nodes/Fire/position = Vector2(-440, 160)
-"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_jsso6")
-"nodes/Animation 2/position" = Vector2(-1200, 400)
-nodes/Reload/node = SubResource("AnimationNodeOneShot_wlg4u")
-nodes/Reload/position = Vector2(520, 120)
-nodes/reload_animation/node = SubResource("AnimationNodeAnimation_toouh")
-nodes/reload_animation/position = Vector2(300, 360)
-"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_wlg4u")
-"nodes/Animation 3/position" = Vector2(-1140, 580)
-nodes/fire_transition/node = SubResource("AnimationNodeTransition_iy2d7")
-nodes/fire_transition/position = Vector2(-820, 400)
-nodes/FIRERATE/node = SubResource("AnimationNodeTimeScale_wlg4u")
-nodes/FIRERATE/position = Vector2(-620, 380)
-nodes/Transition/node = SubResource("AnimationNodeTransition_luwjy")
-nodes/Transition/position = Vector2(160, 140)
-nodes/weapon_in_anim/node = SubResource("AnimationNodeAnimation_iy2d7")
-nodes/weapon_in_anim/position = Vector2(-380, 520)
-nodes/weapon_out_anim/node = SubResource("AnimationNodeAnimation_luwjy")
-nodes/weapon_out_anim/position = Vector2(-340, 700)
-nodes/weapon_inspect_anim/node = SubResource("AnimationNodeAnimation_c01vk")
-nodes/weapon_inspect_anim/position = Vector2(-220, 280)
-node_connections = [&"output", 0, &"Reload", &"Fire", 0, &"Animation", &"Fire", 1, &"FIRERATE", &"Reload", 0, &"Transition", &"Reload", 1, &"reload_animation", &"fire_transition", 0, &"Animation 2", &"fire_transition", 1, &"Animation 3", &"FIRERATE", 0, &"fire_transition", &"Transition", 0, &"Fire", &"Transition", 1, &"weapon_inspect_anim", &"Transition", 2, &"weapon_in_anim", &"Transition", 3, &"weapon_out_anim"]
-
 [node name="PlayerController" type="CharacterBody3D" unique_id=874457777 node_paths=PackedStringArray("head_check", "player_collision", "feet")]
 script = ExtResource("1_h128l")
 head_check = NodePath("HeadCheck")
@@ -364,162 +279,71 @@ player_camera = NodePath("../Head/PlayerCamera3D")
 view_model_offset = Vector3(0.1, -0.2, 0)
 viewmodel_scale = 0.2
 
-[node name="ArmsAndWeapon" type="Node3D" parent="ViewModel" unique_id=1655666096 node_paths=PackedStringArray("arms_animation_tree", "weapon_animation_tree")]
-script = ExtResource("11_luwjy")
-arms_animation_tree = NodePath("../ArmsAnimationTree")
-weapon_animation_tree = NodePath("../WeaponAnimationTree")
+[node name="WeaponManager" type="Node3D" parent="ViewModel" unique_id=1655666096]
+script = ExtResource("11_2c71y")
 metadata/_edit_use_anchors_ = true
 
-[node name="Weapons" type="Node3D" parent="ViewModel/ArmsAndWeapon" unique_id=1030714187]
-transform = Transform3D(0.9942114, 0.0044021755, -0.008035153, -0.009862311, 1.0164311, 0.026642606, -0.021234028, 0.013187668, 0.99138147, 0.06608479, -0.0044629574, -0.43044806)
+[node name="WeaponSocket" type="Node3D" parent="ViewModel/WeaponManager" unique_id=1030714187]
+transform = Transform3D(0.2034852, -0.17486891, -0.9633348, 0.9752924, 0.12263878, 0.18374923, 0.08601027, -0.9769237, 0.1955037, 0.9335283, -0.034373045, -0.028747967)
 
-[node name="Glock17" type="Node3D" parent="ViewModel/ArmsAndWeapon/Weapons" unique_id=406171776 node_paths=PackedStringArray("arms_and_weapon", "muzzle_point", "muzzle_flash", "muzzle_flash_light")]
+[node name="MauserC96" parent="ViewModel/WeaponManager/WeaponSocket" unique_id=793398528 instance=ExtResource("20_2c71y")]
+transform = Transform3D(1.0062249, 0, 0, 0, 0.9842352, 0, 0, 0, 1.0095998, 0, 0, 0)
+
+[node name="MuzzelPoint" type="Node3D" parent="ViewModel/WeaponManager/WeaponSocket/MauserC96/MauserC96Armature/Skeleton3D" parent_id_path=PackedInt32Array(793398528, 277090307) index="1" unique_id=1314100152]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5752025e-10, 0.10952375, -0.40783384)
+visible = false
+
+[node name="MuzzleFlashLight" type="OmniLight3D" parent="ViewModel/WeaponManager/WeaponSocket/MauserC96/MauserC96Armature/Skeleton3D/MuzzelPoint" unique_id=1051223017]
+light_color = Color(0.8287747, 0.4894836, 0.20213118, 1)
+light_energy = 5.0
+omni_range = 0.3
+
+[node name="MuzzleFlash" type="MeshInstance3D" parent="ViewModel/WeaponManager/WeaponSocket/MauserC96/MauserC96Armature/Skeleton3D/MuzzelPoint" unique_id=31660522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.735945e-12, 0.029455168, 2.910383e-11)
+material_override = SubResource("ShaderMaterial_c01vk")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_x6f56")
+
+[node name="Glock17" type="Node3D" parent="ViewModel/WeaponManager/WeaponSocket" unique_id=406171776]
 transform = Transform3D(0.99999994, -1.6734703e-10, -9.313226e-10, -1.1641532e-10, 0.99999994, -1.8626451e-09, -1.8626451e-09, 9.313226e-10, 1, 0, 0, 0)
-script = ExtResource("12_toouh")
-arms_and_weapon = NodePath("../..")
-muzzle_point = NodePath("Glock17Mesh/Glock17Armature/Skeleton3D/Root/MuzzelPoint")
-muzzle_flash = NodePath("Glock17Mesh/Glock17Armature/Skeleton3D/Root/MuzzelPoint/MuzzleFlash")
-muzzle_flash_light = NodePath("Glock17Mesh/Glock17Armature/Skeleton3D/Root/MuzzelPoint/MuzzleFlashLight")
-bullet_hole_scene = ExtResource("13_iy2d7")
 
-[node name="Glock17Mesh" parent="ViewModel/ArmsAndWeapon/Weapons/Glock17" unique_id=918535609 instance=ExtResource("11_jsso6")]
+[node name="Glock17Mesh" parent="ViewModel/WeaponManager/WeaponSocket/Glock17" unique_id=918535609 instance=ExtResource("11_jsso6")]
 transform = Transform3D(0.99999994, -1.6007107e-10, 0, -1.0477379e-09, 1, 1.8626451e-09, 1.8626451e-09, -1.8626451e-09, 0.9999999, 0, 0, 0)
 
-[node name="Skeleton3D" parent="ViewModel/ArmsAndWeapon/Weapons/Glock17/Glock17Mesh/Glock17Armature" parent_id_path=PackedInt32Array(918535609, 154160744) index="0" unique_id=310507070]
-bones/1/position = Vector3(-1.4367348e-18, -0.049148142, 0.016470477)
-bones/1/rotation = Quaternion(-0.13052619, -2.56109e-17, -2.5610898e-17, 0.9914449)
-bones/3/rotation = Quaternion(0.9795276, 2.3998e-08, -1.1676879e-07, -0.20130984)
+[node name="MuzzelPoint" parent="ViewModel/WeaponManager/WeaponSocket/Glock17/Glock17Mesh/Glock17Armature/Skeleton3D/Root" parent_id_path=PackedInt32Array(918535609, 1744984853) index="0" unique_id=1247266000]
+visible = false
 
-[node name="MuzzleFlashLight" type="OmniLight3D" parent="ViewModel/ArmsAndWeapon/Weapons/Glock17/Glock17Mesh/Glock17Armature/Skeleton3D/Root/MuzzelPoint" parent_id_path=PackedInt32Array(918535609, 1247266000) index="0" unique_id=226131758]
+[node name="MuzzleFlashLight" type="OmniLight3D" parent="ViewModel/WeaponManager/WeaponSocket/Glock17/Glock17Mesh/Glock17Armature/Skeleton3D/Root/MuzzelPoint" index="0" unique_id=226131758]
 visible = false
 light_color = Color(0.8287747, 0.4894836, 0.20213118, 1)
 light_energy = 5.0
 omni_range = 0.3
 
-[node name="MuzzleFlash" type="MeshInstance3D" parent="ViewModel/ArmsAndWeapon/Weapons/Glock17/Glock17Mesh/Glock17Armature/Skeleton3D/Root/MuzzelPoint" parent_id_path=PackedInt32Array(918535609, 1247266000) index="1" unique_id=1943299223]
+[node name="MuzzleFlash" type="MeshInstance3D" parent="ViewModel/WeaponManager/WeaponSocket/Glock17/Glock17Mesh/Glock17Armature/Skeleton3D/Root/MuzzelPoint" index="1" unique_id=1943299223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4495072e-12, 0.0028261081, 0)
 material_override = SubResource("ShaderMaterial_c01vk")
 cast_shadow = 0
 mesh = SubResource("QuadMesh_x6f56")
 
-[node name="Glock17Mesh" parent="ViewModel/ArmsAndWeapon/Weapons/Glock17/Glock17Mesh/Glock17Armature/Skeleton3D" index="1" unique_id=491804453]
+[node name="Glock17Mesh" parent="ViewModel/WeaponManager/WeaponSocket/Glock17/Glock17Mesh/Glock17Armature/Skeleton3D" parent_id_path=PackedInt32Array(918535609, 310507070) index="1" unique_id=491804453]
 cast_shadow = 0
 
-[node name="Arms" parent="ViewModel/ArmsAndWeapon" unique_id=1358586963 instance=ExtResource("10_3haav")]
+[node name="Arms" parent="ViewModel/WeaponManager" unique_id=1358586963 instance=ExtResource("10_3haav")]
 
-[node name="Skeleton3D" parent="ViewModel/ArmsAndWeapon/Arms/Armature" parent_id_path=PackedInt32Array(1358586963, 2015052184) index="0" unique_id=1869927368]
-bones/1/position = Vector3(0.45563695, -0.4039612, -0.34995654)
-bones/1/rotation = Quaternion(-0.8252838, -0.22042736, -0.22042732, 0.47088236)
-bones/2/position = Vector3(-0.026778102, -0.032238364, 0.31429362)
-bones/2/rotation = Quaternion(0.6309484, 0.24989796, 0.45618242, 0.5756325)
-bones/3/rotation = Quaternion(0.37064263, 0.08087106, 0.7872457, 0.48613602)
-bones/3/scale = Vector3(1.006861, 0.9864186, 1.006861)
-bones/4/rotation = Quaternion(0.15458483, 0.018523669, -0.43124774, 0.88869894)
-bones/4/scale = Vector3(1.0125871, 0.9855256, 1.0023038)
-bones/5/position = Vector3(-3.9000298e-08, 0.26675367, -8.022312e-09)
-bones/5/rotation = Quaternion(0.20220666, -0.17469917, 0.18565243, 0.94558233)
-bones/5/scale = Vector3(0.99442554, 1.0087358, 0.99710965)
-bones/6/rotation = Quaternion(-0.51508534, -0.448305, 0.5746725, -0.4510668)
-bones/7/rotation = Quaternion(-0.24036644, -0.089021154, 0.13622822, 0.95694363)
-bones/8/rotation = Quaternion(-0.23974858, -0.19195326, 0.31357577, 0.89852375)
-bones/9/rotation = Quaternion(-0.12044824, -0.028068218, 0.39395872, 0.9107695)
-bones/10/position = Vector3(-0.03186513, 0.10863392, 0.027542893)
-bones/10/rotation = Quaternion(-0.31951186, 0.07342638, 0.1504498, 0.9326767)
-bones/11/rotation = Quaternion(-0.4571361, 0.032103147, 0.12986393, 0.87927896)
-bones/12/rotation = Quaternion(-0.36359197, -0.06461231, 0.16494413, 0.91455984)
-bones/13/rotation = Quaternion(-0.42466027, -0.004405627, 0.15578735, 0.8918377)
-bones/14/rotation = Quaternion(-0.34263387, -0.09357188, 0.36258128, 0.8616155)
-bones/15/rotation = Quaternion(-0.4784808, -0.1163011, 0.38879538, 0.77869666)
-bones/16/rotation = Quaternion(-0.4292279, -0.1461219, 0.26911226, 0.8497002)
-bones/17/rotation = Quaternion(-0.30221966, -0.1766489, 0.4098035, 0.8423298)
-bones/18/rotation = Quaternion(-0.19324952, -0.011057718, 0.36071572, 0.9123687)
-bones/19/rotation = Quaternion(-0.038544938, -0.59494585, -0.23198622, 0.76859367)
-bones/20/rotation = Quaternion(0.10228916, 0.07512877, 0.14082102, 0.98186666)
-bones/21/rotation = Quaternion(-0.002093265, 0.12242926, 0.024815805, 0.99216473)
-bones/22/rotation = Quaternion(0.35208252, 0.09162872, 0.79557157, 0.48446655)
-bones/22/scale = Vector3(0.98641837, 0.9864185, 0.9864185)
-bones/23/rotation = Quaternion(0.1730306, 0.01503711, -0.42390728, 0.8888964)
-bones/23/scale = Vector3(0.99901503, 0.9990153, 0.9990152)
-bones/25/position = Vector3(-0.14563689, -0.22396123, 0.15004328)
-bones/25/rotation = Quaternion(-0.92535657, 0.19909139, 0.19909143, -0.25385156)
-bones/26/position = Vector3(-0.07322204, -0.0002383031, 0.3052936)
-bones/26/rotation = Quaternion(0.5723282, -0.44744346, -0.5194331, 0.44991574)
-bones/27/rotation = Quaternion(0.4357689, -0.0764136, -0.7903894, 0.42373475)
-bones/27/scale = Vector3(1.0129647, 0.97456723, 1.0129642)
-bones/28/rotation = Quaternion(0.18539424, -0.022706548, 0.61164135, 0.76877064)
-bones/28/scale = Vector3(1.0356406, 0.96091926, 1.0052109)
-bones/29/position = Vector3(-1.8823073e-08, 0.26675376, 1.1179225e-08)
-bones/29/rotation = Quaternion(0.16623697, -0.08945688, -0.34251454, 0.92035127)
-bones/29/scale = Vector3(1.0047704, 1.0078573, 0.9884843)
-bones/31/rotation = Quaternion(-0.051419903, 0.1189694, 0.111103915, 0.9853214)
-bones/32/rotation = Quaternion(-0.17402545, 0.18165709, -0.046961237, 0.9667009)
-bones/33/rotation = Quaternion(-0.22627902, -0.011794914, -0.22338846, 0.9480277)
-bones/34/rotation = Quaternion(-0.22068706, 0.0067398325, 0.08474337, 0.97163284)
-bones/35/rotation = Quaternion(-0.46494186, 0.114729576, -0.09453265, 0.87277144)
-bones/36/rotation = Quaternion(-0.39733386, 0.088012554, -0.18430506, 0.894657)
-bones/37/rotation = Quaternion(-0.15111545, 0.042599842, 0.16643155, 0.97347313)
-bones/38/rotation = Quaternion(-0.48620453, 0.1487547, -0.24778369, 0.8246699)
-bones/39/rotation = Quaternion(-0.7344271, -0.07070908, -0.32637554, 0.5908435)
-bones/40/rotation = Quaternion(-0.36602888, 0.07205404, 0.14978164, 0.91564)
-bones/41/rotation = Quaternion(-0.52815664, 0.22377941, -0.29820547, 0.76291996)
-bones/42/rotation = Quaternion(-0.3514815, 0.04235434, -0.22633532, 0.9074356)
-bones/43/rotation = Quaternion(-0.36673146, 0.010103993, 0.27556902, 0.88852)
-bones/44/rotation = Quaternion(0.2805211, -0.04586483, -0.24806914, 0.9261026)
-bones/45/rotation = Quaternion(-0.021787588, -0.106408015, -0.1527533, 0.9822776)
-bones/46/rotation = Quaternion(0.39155287, -0.099071994, -0.81307364, 0.41926414)
-bones/46/scale = Vector3(0.9745673, 0.97456723, 0.97456676)
-bones/47/rotation = Quaternion(0.24106084, -0.013026295, 0.59057426, 0.7700273)
-bones/47/scale = Vector3(0.9975281, 0.9975284, 0.9975283)
-
-[node name="ArmsMesh" parent="ViewModel/ArmsAndWeapon/Arms/Armature/Skeleton3D" index="0" unique_id=481944219]
+[node name="ArmsMesh" parent="ViewModel/WeaponManager/Arms/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1358586963, 890966028) index="0" unique_id=1669736415]
 layers = 4
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_0t6tw")
 skin = SubResource("Skin_8nq80")
 
-[node name="RightHandAttachment" type="BoneAttachment3D" parent="ViewModel/ArmsAndWeapon/Arms/Armature/Skeleton3D" index="1" unique_id=1088392733]
-transform = Transform3D(0.9942114, 0.0044021755, -0.008035153, -0.009862311, 1.0164311, 0.026642606, -0.021234028, 0.013187668, 0.99138147, 0.06608479, -0.004463003, -0.43044806)
+[node name="RightHandAttachment" type="BoneAttachment3D" parent="ViewModel/WeaponManager/Arms/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1358586963, 890966028) index="1" unique_id=1088392733]
+transform = Transform3D(0.2034852, -0.17486891, -0.9633348, 0.9752924, 0.12263878, 0.18374923, 0.08601027, -0.9769237, 0.1955037, 0.9335283, -0.034373, -0.028747967)
 bone_name = "RightHandAttachment"
 bone_idx = 30
 
-[node name="Weapons" type="RemoteTransform3D" parent="ViewModel/ArmsAndWeapon/Arms/Armature/Skeleton3D/RightHandAttachment" unique_id=1675334148]
-remote_path = NodePath("../../../../../Weapons")
+[node name="WeaponSocket" type="RemoteTransform3D" parent="ViewModel/WeaponManager/Arms/Armature/Skeleton3D/RightHandAttachment" unique_id=1675334148]
+remote_path = NodePath("../../../../../WeaponSocket")
 
-[node name="ArmsAnimationTree" type="AnimationTree" parent="ViewModel" unique_id=822100633]
-root_node = NodePath("../ArmsAndWeapon/Arms")
-tree_root = SubResource("AnimationNodeBlendTree_jsso6")
-anim_player = NodePath("../ArmsAndWeapon/Arms/AnimationPlayer")
-parameters/Fire/active = false
-parameters/Fire/internal_active = false
-parameters/Fire/request = 0
-parameters/Reload/active = false
-parameters/Reload/internal_active = false
-parameters/Reload/request = 0
-parameters/fire_transition/current_state = "normal"
-parameters/fire_transition/transition_request = ""
-parameters/fire_transition/current_index = 0
-parameters/FIRERATE/scale = 1.0
-parameters/Transition/current_state = "IDLE"
-parameters/Transition/transition_request = ""
-parameters/Transition/current_index = 0
-
-[node name="WeaponAnimationTree" type="AnimationTree" parent="ViewModel" unique_id=1404479570]
-root_node = NodePath("../ArmsAndWeapon/Weapons/Glock17/Glock17Mesh")
-tree_root = SubResource("AnimationNodeBlendTree_jsso6")
-anim_player = NodePath("../ArmsAndWeapon/Weapons/Glock17/Glock17Mesh/AnimationPlayer")
-parameters/Fire/active = false
-parameters/Fire/internal_active = false
-parameters/Fire/request = 0
-parameters/Reload/active = false
-parameters/Reload/internal_active = false
-parameters/Reload/request = 0
-parameters/fire_transition/current_state = ""
-parameters/fire_transition/transition_request = "normal"
-parameters/fire_transition/current_index = -1
-parameters/FIRERATE/scale = 1.0
-parameters/Transition/current_state = "IDLE"
-parameters/Transition/transition_request = ""
-parameters/Transition/current_index = 0
-
-[editable path="ViewModel/ArmsAndWeapon/Weapons/Glock17/Glock17Mesh"]
-[editable path="ViewModel/ArmsAndWeapon/Arms"]
+[editable path="ViewModel/WeaponManager/WeaponSocket/MauserC96"]
+[editable path="ViewModel/WeaponManager/WeaponSocket/Glock17/Glock17Mesh"]
+[editable path="ViewModel/WeaponManager/Arms"]

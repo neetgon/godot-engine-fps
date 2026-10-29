@@ -1,4 +1,5 @@
 extends Node3D
+class_name Glock17
 
 @export var arms_and_weapon : ArmsAndWeapon;
 @export var muzzle_point : Node3D;
@@ -12,6 +13,8 @@ extends Node3D
 @export var bullet_hole_scene : PackedScene;
 
 @export var fire_rate_scale : float = 1.0;
+
+var enabled : bool = false;
 
 const STATES = {
 	IN = "IN",
@@ -28,8 +31,6 @@ var current_state: String = STATES.IDLE;
 func _ready() -> void:
 	muzzle_flash.visible = false;
 	muzzle_flash_light.visible = false;
-	
-	change_state("IDLE");
 
 func _process(_delta: float) -> void:
 	arms_and_weapon.playback_set(
@@ -139,6 +140,18 @@ func change_state(state: String) -> void:
 				"parameters/Transition/transition_request",
 				"IDLE"
 			)
+		
+		STATES.OUT:
+			arms_and_weapon.playback_set(
+				"parameters/Transition/transition_request",
+				"OUT"
+			);
+		
+		STATES.IDLE:
+			arms_and_weapon.playback_set(
+				"parameters/Transition/transition_request",
+				"IDLE"
+			);
 
 func play_audio(audio_path : String, volume : float = 1.0) -> void:
 	AudioPlayer.play(
