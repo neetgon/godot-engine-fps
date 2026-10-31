@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://duer1ybklcmfq"]
+
+[ext_resource type="Shader" uid="uid://c7t2dr8dmaudx" path="res://data/shaders/toon.gdshader" id="1_r4qaj"]
+[ext_resource type="Texture2D" uid="uid://ctpj008gqmtty" path="res://data/textures/fire_shot/fire_shot.png" id="2_gslqt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rhllh"]
+render_priority = 0
+shader = ExtResource("1_r4qaj")
+shader_parameter/albedo_texture = ExtResource("2_gslqt")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/roughness = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/specular = 0.5
+shader_parameter/use_emission = true
+shader_parameter/emission_texture = ExtResource("2_gslqt")
+shader_parameter/emission_strength = 1.0
+shader_parameter/shadow_threshold = 0.0
+shader_parameter/light_smoothness = 0.5
+
+[sub_resource type="QuadMesh" id="QuadMesh_x6f56"]
+
+[node name="MuzzleFlash" type="MeshInstance3D" unique_id=964280000]
+material_override = SubResource("ShaderMaterial_rhllh")
+mesh = SubResource("QuadMesh_x6f56")

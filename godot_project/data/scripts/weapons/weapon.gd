@@ -56,6 +56,8 @@ func fire_weapon() -> void:
 			current_weapon_state = WEAPON_STATES.FIRE_EMPTY;
 			current_ammo -= 1;
 			
+			
+			
 			var target : Vector3 = Global.player_camera.global_position;
 			target -= Global.player_camera.global_basis.z * 5.0;
 			
@@ -63,6 +65,13 @@ func fire_weapon() -> void:
 				muzzle_point.global_position,
 				target,
 				Color.ORANGE
+			);
+			
+			Global.effects.draw_muzzle_flash(
+				muzzle_point,
+				Vector3(0.0, 0.03, 0.0),
+				Vector3.ZERO,
+				Vector3.ONE * 0.3
 			);
 			
 			Global.effects.draw_bullet_hole(bullet_hole);
@@ -79,6 +88,8 @@ func fire_weapon() -> void:
 
 func reload_weapon() -> void:
 	if current_weapon_state == WEAPON_STATES.IDLE:
+		if not current_ammo < max_ammo: return;
+		
 		current_weapon_state = WEAPON_STATES.RELOAD;
 		play_audio(reload_audio);
 		await play_animation(weapon_id + "_reload");

@@ -99,14 +99,18 @@ transform = Transform3D(0.2034852, -0.17486891, -0.9633348, 0.9752924, 0.1226387
 [node name="MauserC96" parent="ViewModel/WeaponManager/WeaponSocket" unique_id=733268565 node_paths=PackedStringArray("arms_animation_player") instance=ExtResource("13_08vgp")]
 transform = Transform3D(1, -8.367351e-10, 0, -1.1641532e-10, 1.0000001, 3.7252903e-09, -1.8626451e-09, 0, 1, 0, 0, 0)
 arms_animation_player = NodePath("../../../Arms/AnimationPlayer")
+animation_out_speed = 10.0
+animation_in_speed = 2.0
 
 [node name="Glock17" parent="ViewModel/WeaponManager/WeaponSocket" unique_id=811909103 node_paths=PackedStringArray("arms_animation_player") instance=ExtResource("18_c01vk")]
 visible = false
 arms_animation_player = NodePath("../../../Arms/AnimationPlayer")
+animation_out_speed = 10.0
+animation_in_speed = 2.0
 
 [node name="Arms" parent="ViewModel" unique_id=1082054450 instance=ExtResource("10_3haav")]
 
-[node name="RightHandAttachment" type="BoneAttachment3D" parent="ViewModel/Arms/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1082054450, 1325090135) index="1" unique_id=818416978]
+[node name="RightHandAttachment" type="BoneAttachment3D" parent="ViewModel/Arms/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1082054450, 1269660366) index="1" unique_id=818416978]
 transform = Transform3D(0.2034852, -0.17486891, -0.9633348, 0.9752924, 0.12263878, 0.18374923, 0.08601027, -0.9769237, 0.1955037, 0.9335283, -0.034373, -0.028747967)
 bone_name = "RightHandAttachment"
 bone_idx = 30
