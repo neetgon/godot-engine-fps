@@ -10,6 +10,9 @@ func _ready() -> void:
 		set_current_weapon(arsenal[0]);
 
 func _process(_delta: float) -> void:
+	if Global.player_inventory.visible:
+		return;
+	
 	change_weapon();
 	
 	if Input.is_action_pressed("MB_LEFT"):

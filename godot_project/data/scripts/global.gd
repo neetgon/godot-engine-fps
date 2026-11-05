@@ -22,6 +22,10 @@ var debug : bool = false
 
 var effects : Effects = Effects.new();
 
+var inventory_is_visible : bool = false;
+
+var player_inventory : PlayerInventory;
+
 var reset : bool = false: 
 	set(value):
 		reload_current_scene();

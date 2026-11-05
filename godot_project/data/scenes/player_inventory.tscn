@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://33ijesohbcvw"]
+
+[ext_resource type="Script" uid="uid://dkr0fg3blsft1" path="res://data/scripts/player/player_inventory.gd" id="1_5ep56"]
+[ext_resource type="PackedScene" uid="uid://drh7ualtw7j0m" path="res://data/scenes/inventory_slot.tscn" id="2_mdbo8"]
+
+[node name="PlayerInventory" type="Control" unique_id=60181889 node_paths=PackedStringArray("inventory_item_gui")]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_5ep56")
+inventory_item_gui = NodePath("InventorySlot")
+
+[node name="InventorySlot" parent="." unique_id=1212220738 instance=ExtResource("2_mdbo8")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 63.99997
+offset_bottom = 64.0
+grow_horizontal = 1
+grow_vertical = 1

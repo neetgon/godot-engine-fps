@@ -3,6 +3,7 @@
 [ext_resource type="Environment" uid="uid://ci6x5at1m5s5d" path="res://data/world_environment/default_environment.tres" id="1_eqrjm"]
 [ext_resource type="PackedScene" uid="uid://blla3oh8kkq7t" path="res://data/scenes/player.tscn" id="1_sfase"]
 [ext_resource type="Material" uid="uid://b4uec6i5oatia" path="res://data/materials/screen_effects.material" id="2_yeeyf"]
+[ext_resource type="PackedScene" uid="uid://33ijesohbcvw" path="res://data/scenes/player_inventory.tscn" id="5_pbhab"]
 [ext_resource type="Material" uid="uid://bxfbeol6c41qn" path="res://data/materials/generic/generic_droivox_debug_grid.material" id="7_fatw5"]
 
 [node name="Main" type="Node" unique_id=362638262]
@@ -39,3 +40,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 material_override = ExtResource("7_fatw5")
 use_collision = true
 size = Vector3(30, 1, 30)
+
+[node name="PlayerInventory" parent="." unique_id=60181889 instance=ExtResource("5_pbhab")]
+offset_left = 432.0
+offset_top = 176.0
+offset_right = 432.0
+offset_bottom = 176.0
