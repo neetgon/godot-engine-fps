@@ -7,7 +7,7 @@ var mute : bool = false;
 
 func play(_audio_stream : AudioStream, _position : Vector3, _volume : float, _2d : bool, random : bool, pitch : float = 1.0):
 	if not mute:
-		if _2d:
+		if not _2d:
 			var audio = AudioStreamPlayer3D.new();
 			audio.stream = _audio_stream;
 			if random:

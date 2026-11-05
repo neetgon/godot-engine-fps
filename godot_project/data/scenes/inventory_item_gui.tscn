@@ -1,10 +1,70 @@
 [gd_scene format=4 uid="uid://drh7ualtw7j0m"]
 
-[ext_resource type="Script" uid="uid://1cvll6wphuc2" path="res://data/scripts/inventory_slot.gd" id="1_kca3w"]
-[ext_resource type="PackedScene" uid="uid://cfhgh7ig7qm1d" path="res://data/models/weapons/mauser_c96/mauser_c96.glb" id="2_ttq0t"]
+[ext_resource type="Script" uid="uid://1cvll6wphuc2" path="res://data/scripts/inventory_item_gui.gd" id="1_xdej0"]
+[ext_resource type="PackedScene" uid="uid://cfhgh7ig7qm1d" path="res://data/models/weapons/mauser_c96/mauser_c96.glb" id="2_1objd"]
+
+[sub_resource type="Shader" id="Shader_1o0bv"]
+code = "shader_type canvas_item;
+
+uniform vec2 rect_size = vec2(64.0, 64.0);
+uniform float border_size = 2.0;
+uniform vec4 border_color : source_color = vec4(1.0);
+
+uniform sampler2D perlin : source_color, repeat_enable;
+
+void fragment() {
+	vec2 pixel_pos = UV * rect_size;
+
+	bool border =
+		pixel_pos.x < border_size ||
+		pixel_pos.x > rect_size.x - border_size ||
+		pixel_pos.y < border_size ||
+		pixel_pos.y > rect_size.y - border_size;
+
+	COLOR = border ? border_color : vec4(0.0);
+	
+	float p = texture(perlin, (UV) - TIME * 0.1).r;
+	p = smoothstep(0.4, 0.6, p);
+	COLOR.a *= p;
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1objd"]
+frequency = 0.1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xdej0"]
+width = 64
+height = 64
+noise = SubResource("FastNoiseLite_1objd")
+seamless = true
+seamless_blend_skirt = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x6f56"]
+shader = SubResource("Shader_1o0bv")
+shader_parameter/rect_size = Vector2(64, 64)
+shader_parameter/border_size = 1.0
+shader_parameter/border_color = Color(1, 1, 1, 0.2627451)
+shader_parameter/perlin = SubResource("NoiseTexture2D_xdej0")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ldei7"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Shader" id="Shader_1objd"]
+code = "shader_type canvas_item;
+
+uniform float opacity : hint_range(0.0, 1.0, 0.01);
+
+void vertex() {
+	
+}
+
+void fragment() {
+	COLOR.rgb = vec3(0.0);
+	COLOR.a *= opacity;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xdej0"]
+shader = SubResource("Shader_1objd")
+shader_parameter/opacity = 0.20999999530608
 
 [sub_resource type="Environment" id="Environment_ldei7"]
 ambient_light_source = 2
@@ -59,19 +119,19 @@ bind/6/name = &"Trigger"
 bind/6/bone = -1
 bind/6/pose = Transform3D(1, 6.503535e-17, 1.5700924e-16, 1.5700926e-16, -0.70710677, -0.70710665, 6.503542e-17, 0.70710665, -0.7071066, 7.032736e-18, 0.028535526, -0.11667258)
 
-[node name="InventorySlot" type="Control" unique_id=1212220738 node_paths=PackedStringArray("item_dummy", "background")]
+[node name="InventoryItemGui" type="Control" unique_id=1212220738 node_paths=PackedStringArray("item_dummy", "background", "item_texture", "selected")]
+z_index = 5
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -1152.0
-offset_bottom = -656.0
+anchor_right = 0.1
+anchor_bottom = 0.08888889
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_kca3w")
+script = ExtResource("1_xdej0")
 item_dummy = NodePath("SubViewport/Camera3D/ItemDummy")
-columns = 3
 background = NodePath("Background")
+item_texture = NodePath("ItemTexture")
+selected = NodePath("Selected")
+metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="ColorRect" parent="." unique_id=1356988475]
 layout_mode = 1
@@ -80,31 +140,70 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
 color = Color(1, 1, 1, 0.11372549)
 
-[node name="ItemTexture" type="TextureRect" parent="." unique_id=1938669491]
+[node name="Selected" type="ColorRect" parent="." unique_id=2107975918]
+material = SubResource("ShaderMaterial_x6f56")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+
+[node name="ItemTexture" type="TextureRect" parent="." unique_id=1938669491]
+z_index = 5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -6.1035156e-05
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+mouse_behavior_recursive = 2
 texture = SubResource("ViewportTexture_ldei7")
 expand_mode = 1
+stretch_mode = 5
+
+[node name="Shadow" type="TextureRect" parent="." unique_id=615317075]
+z_index = 4
+material = SubResource("ShaderMaterial_xdej0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 2.999939
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 2
+mouse_behavior_recursive = 2
+texture = SubResource("ViewportTexture_ldei7")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="SubViewport" type="SubViewport" parent="." unique_id=377035086]
 own_world_3d = true
 world_3d = SubResource("World3D_ttq0t")
 transparent_bg = true
-size = Vector2i(256, 128)
+size = Vector2i(512, 256)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=1575137580]
 
 [node name="ItemDummy" type="Node3D" parent="SubViewport/Camera3D" unique_id=572798513]
-transform = Transform3D(0.98480767, -0.045236133, 0.16765255, 0, 0.96547264, 0.26050448, -0.17364816, -0.25654685, 0.9508048, 0.01, 0.035, -0.19)
+transform = Transform3D(0.98480767, -0.045236133, 0.16765255, 0, 0.96547264, 0.26050448, -0.17364816, -0.25654685, 0.9508048, 0, 0.015, -0.3)
 
-[node name="MauserC96" parent="SubViewport/Camera3D/ItemDummy" unique_id=1862896694 instance=ExtResource("2_ttq0t")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.135, -0.092, -0.024)
+[node name="MauserC96" parent="SubViewport/Camera3D/ItemDummy" unique_id=1862896694 instance=ExtResource("2_1objd")]
 
 [node name="Skeleton3D" parent="SubViewport/Camera3D/ItemDummy/MauserC96/MauserC96Armature" parent_id_path=PackedInt32Array(1862896694, 1520521108) index="0" unique_id=1166238474]
 bones/0/position = Vector3(2.1684043e-16, -0.012849989, 0.01035)
@@ -126,5 +225,8 @@ visible = false
 
 [node name="Parabellum9X19MM" parent="SubViewport/Camera3D/ItemDummy/MauserC96" index="1" unique_id=1788730044]
 visible = false
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 
 [editable path="SubViewport/Camera3D/ItemDummy/MauserC96"]

@@ -16,7 +16,6 @@ signal slot_state_changed;
 func _init(_colums : int, _rows : int) -> void:
 	self.columns = _colums;
 	self.rows = _rows;
-	
 	setup();
 
 func setup() -> void:

@@ -8,6 +8,8 @@ var current_weapon : Weapon;
 func _ready() -> void:
 	if not arsenal.is_empty():
 		set_current_weapon(arsenal[0]);
+	
+	Global.change_weapon.connect(change_weapon_from_inventory);
 
 func _process(_delta: float) -> void:
 	if Global.player_inventory.visible:
@@ -33,6 +35,14 @@ func change_weapon() -> void:
 			
 			if index < arsenal.size():
 				set_current_weapon(arsenal[index]);
+
+func change_weapon_from_inventory(weapon_name : String) -> void:
+	print(weapon_name)
+	
+	for weapon in arsenal:
+		if weapon.weapon_id == weapon_name:
+			set_current_weapon(weapon);
+			break;
 
 func set_current_weapon(weapon : Weapon) -> void:
 	if not can_change_weapon: return;

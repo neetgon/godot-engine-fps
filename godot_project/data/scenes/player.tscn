@@ -82,7 +82,7 @@ ladder_footsteep_metal = Array[AudioStream]([ExtResource("6_6kiou"), ExtResource
 
 [node name="ViewModel" type="Node3D" parent="." unique_id=1674575757 node_paths=PackedStringArray("player_camera")]
 physics_interpolation_mode = 1
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 script = ExtResource("10_ww2m0")
 player_camera = NodePath("../Head/PlayerCamera3D")
 view_model_offset = Vector3(0.1, -0.2, 0)
@@ -118,4 +118,6 @@ bone_idx = 30
 [node name="WeaponSocket" type="RemoteTransform3D" parent="ViewModel/Arms/Armature/Skeleton3D/RightHandAttachment" unique_id=795243931]
 remote_path = NodePath("../../../../../WeaponManager/WeaponSocket")
 
+[editable path="ViewModel/WeaponManager/WeaponSocket/Glock17"]
+[editable path="ViewModel/WeaponManager/WeaponSocket/Glock17/Glock17Mesh"]
 [editable path="ViewModel/Arms"]

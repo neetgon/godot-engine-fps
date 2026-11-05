@@ -26,6 +26,9 @@ var inventory_is_visible : bool = false;
 
 var player_inventory : PlayerInventory;
 
+@warning_ignore("unused_signal")
+signal change_weapon(weapon_name : String);
+
 var reset : bool = false: 
 	set(value):
 		reload_current_scene();
