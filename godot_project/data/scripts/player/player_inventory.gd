@@ -267,11 +267,12 @@ func place_item(_item: InventoryItemGui, _position: Vector2i = Vector2i.ZERO) ->
 		_item.queue_free()
 		return
 
-	_item.position = target_position * INVENTORY_SLOT_SIZE
+	_item.position = Vector2(target_position * INVENTORY_SLOT_SIZE)
 
 	for x in item_size.x:
 		for y in item_size.y:
 			var slot_position := target_position + Vector2i(x, y)
+
 			inventory.change_slot_state(
 				slot_position,
 				inventory.SlotState.OCCUPIED
