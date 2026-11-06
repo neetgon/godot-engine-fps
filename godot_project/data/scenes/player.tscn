@@ -13,7 +13,7 @@
 [ext_resource type="Script" uid="uid://cjy1dqqc3y7p1" path="res://data/scripts/player/player_viewmodel.gd" id="10_ww2m0"]
 [ext_resource type="Script" uid="uid://bjfpm36rdxs7m" path="res://data/scripts/weapon_manager.gd" id="11_2c71y"]
 [ext_resource type="PackedScene" uid="uid://cjj671c4us1qr" path="res://data/scenes/weapons/mauser_c96.tscn" id="13_08vgp"]
-[ext_resource type="PackedScene" uid="uid://b4aadfqwpsv1b" path="res://data/scenes/weapons/glock_17.tscn" id="18_c01vk"]
+[ext_resource type="PackedScene" uid="uid://b4aadfqwpsv1b" path="res://data/scenes/weapons/glock_17.tscn" id="13_toouh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2648x"]
 radius = 0.3
@@ -88,29 +88,26 @@ player_camera = NodePath("../Head/PlayerCamera3D")
 view_model_offset = Vector3(0.1, -0.2, 0)
 viewmodel_scale = 0.2
 
-[node name="WeaponManager" type="Node3D" parent="ViewModel" unique_id=1655666096 node_paths=PackedStringArray("arsenal")]
+[node name="WeaponManager" type="Node3D" parent="ViewModel" unique_id=1655666096 node_paths=PackedStringArray("weapon_socket", "arms_animation_player")]
 script = ExtResource("11_2c71y")
-arsenal = [NodePath("WeaponSocket/MauserC96"), NodePath("WeaponSocket/Glock17")]
+weapon_socket = NodePath("WeaponSocket")
+arms_animation_player = NodePath("../Arms/AnimationPlayer")
 metadata/_edit_use_anchors_ = true
 
 [node name="WeaponSocket" type="Node3D" parent="ViewModel/WeaponManager" unique_id=1030714187]
 transform = Transform3D(0.2034852, -0.17486891, -0.9633348, 0.9752924, 0.12263878, 0.18374923, 0.08601027, -0.9769237, 0.1955037, 0.9335283, -0.034373045, -0.028747967)
 
-[node name="MauserC96" parent="ViewModel/WeaponManager/WeaponSocket" unique_id=733268565 node_paths=PackedStringArray("arms_animation_player") instance=ExtResource("13_08vgp")]
-transform = Transform3D(1, -8.367351e-10, 0, -1.1641532e-10, 1.0000001, 3.7252903e-09, -1.8626451e-09, 0, 1, 0, 0, 0)
-arms_animation_player = NodePath("../../../Arms/AnimationPlayer")
-animation_out_speed = 10.0
-animation_in_speed = 2.0
+[node name="MauserC96" parent="ViewModel/WeaponManager/WeaponSocket" unique_id=733268565 instance=ExtResource("13_08vgp")]
+animation_holster_speed = 6.0
+animation_draw_speed = 3.0
 
-[node name="Glock17" parent="ViewModel/WeaponManager/WeaponSocket" unique_id=811909103 node_paths=PackedStringArray("arms_animation_player") instance=ExtResource("18_c01vk")]
-visible = false
-arms_animation_player = NodePath("../../../Arms/AnimationPlayer")
-animation_out_speed = 10.0
-animation_in_speed = 2.0
+[node name="Glock17" parent="ViewModel/WeaponManager/WeaponSocket" unique_id=811909103 instance=ExtResource("13_toouh")]
+animation_holster_speed = 6.0
+animation_draw_speed = 3.0
 
 [node name="Arms" parent="ViewModel" unique_id=1082054450 instance=ExtResource("10_3haav")]
 
-[node name="RightHandAttachment" type="BoneAttachment3D" parent="ViewModel/Arms/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1082054450, 2139467320) index="1" unique_id=818416978]
+[node name="RightHandAttachment" type="BoneAttachment3D" parent="ViewModel/Arms/Armature/Skeleton3D" parent_id_path=PackedInt32Array(1082054450, 1357502495) index="1" unique_id=818416978]
 transform = Transform3D(0.2034852, -0.17486891, -0.9633348, 0.9752924, 0.12263878, 0.18374923, 0.08601027, -0.9769237, 0.1955037, 0.9335283, -0.034373, -0.028747967)
 bone_name = "RightHandAttachment"
 bone_idx = 30
@@ -118,6 +115,4 @@ bone_idx = 30
 [node name="WeaponSocket" type="RemoteTransform3D" parent="ViewModel/Arms/Armature/Skeleton3D/RightHandAttachment" unique_id=795243931]
 remote_path = NodePath("../../../../../WeaponManager/WeaponSocket")
 
-[editable path="ViewModel/WeaponManager/WeaponSocket/Glock17"]
-[editable path="ViewModel/WeaponManager/WeaponSocket/Glock17/Glock17Mesh"]
 [editable path="ViewModel/Arms"]

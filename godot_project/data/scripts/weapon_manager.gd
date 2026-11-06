@@ -1,15 +1,30 @@
 extends Node
 class_name WeaponManager;
 
-@export var arsenal : Array[Weapon];
+var arsenal : Array[Weapon];
 
 var current_weapon : Weapon;
+@export var weapon_socket : Node3D;
+@export var arms_animation_player : AnimationPlayer;
 
 func _ready() -> void:
 	if not arsenal.is_empty():
 		set_current_weapon(arsenal[0]);
 	
 	Global.change_weapon.connect(change_weapon_from_inventory);
+	
+	update_weapons();
+
+func update_weapons() -> void:
+	arsenal.clear()
+	
+	for child in weapon_socket.get_children():
+		if child is Weapon:
+			child.visible = false;
+			child.arms_animation_player = arms_animation_player;
+			arsenal.append(child);
+	
+	set_current_weapon(arsenal[0]);
 
 func _process(_delta: float) -> void:
 	if Global.player_inventory.visible:
@@ -24,6 +39,10 @@ func _process(_delta: float) -> void:
 	if Input.is_action_pressed("KEY_R"):
 		if is_instance_valid(current_weapon):
 			current_weapon.reload_weapon();
+	
+	if Input.is_action_just_pressed("KEY_F"):
+		if is_instance_valid(current_weapon):
+			current_weapon.inspect();
 
 var can_change_weapon : bool = true;
 
@@ -37,8 +56,6 @@ func change_weapon() -> void:
 				set_current_weapon(arsenal[index]);
 
 func change_weapon_from_inventory(weapon_name : String) -> void:
-	print(weapon_name)
-	
 	for weapon in arsenal:
 		if weapon.weapon_id == weapon_name:
 			set_current_weapon(weapon);
@@ -54,7 +71,7 @@ func set_current_weapon(weapon : Weapon) -> void:
 	
 	if is_instance_valid(last_weapon):
 		can_change_weapon = false;
-		await last_weapon.hide_weapon();
+		await last_weapon.holster();
 	
 	current_weapon = weapon;
 	

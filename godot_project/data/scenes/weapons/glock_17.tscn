@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b4aadfqwpsv1b"]
 
-[ext_resource type="PackedScene" uid="uid://sqd5022b8akt" path="res://data/models/weapons/glock_17/glock_17.glb" id="1_fyupa"]
+[ext_resource type="PackedScene" uid="uid://m4ldeyfaqpum" path="res://data/models/weapons/glock_17/glock_17.glb" id="1_fyupa"]
 [ext_resource type="Script" uid="uid://brcpe88fn55bp" path="res://data/scripts/weapons/glock_17/glock_17.gd" id="1_tvecj"]
 [ext_resource type="AudioStream" uid="uid://veh4u12w7fli" path="res://data/sounds/weapons/kriss/draw.ogg" id="2_6q0ye"]
 [ext_resource type="AudioStream" uid="uid://wf3le0ly7kvg" path="res://data/sounds/weapons/kriss/reload.ogg" id="3_npwcs"]
@@ -10,13 +10,17 @@
 [node name="Glock17" type="Node3D" unique_id=811909103 node_paths=PackedStringArray("weapon_animation_player", "muzzle_point")]
 script = ExtResource("1_tvecj")
 weapon_id = "glock_17"
-weapon_animation_player = NodePath("Glock17Mesh/AnimationPlayer")
-muzzle_point = NodePath("Glock17Mesh/Glock17Armature/Skeleton3D/Root/MuzzelPoint")
+weapon_animation_player = NodePath("Glock17/AnimationPlayer")
+muzzle_point = NodePath("Glock17/Glock17Armature/Skeleton3D/Root/Glock17MuzzelPoint")
 draw_audio = ExtResource("2_6q0ye")
 reload_audio = ExtResource("3_npwcs")
 fire_audio = ExtResource("4_hqyle")
 fire_empty_audio = ExtResource("5_1e03q")
 
-[node name="Glock17Mesh" parent="." unique_id=76082550 instance=ExtResource("1_fyupa")]
+[node name="Glock17" parent="." unique_id=1160083983 instance=ExtResource("1_fyupa")]
 
-[editable path="Glock17Mesh"]
+[node name="Skeleton3D" parent="Glock17/Glock17Armature" parent_id_path=PackedInt32Array(1160083983, 1561754726) index="0" unique_id=2061027625]
+bones/2/position = Vector3(-6.537981e-18, 0.105000004, -0.06055555)
+bones/3/rotation = Quaternion(0.98486644, 2.7315712e-08, -1.1603753e-07, -0.17331544)
+
+[editable path="Glock17"]

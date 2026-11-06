@@ -12,10 +12,10 @@ func _process(_delta) -> void:
 	draw_update();
 	draw_string("FPS", int(Engine.get_frames_per_second()));
 	
-	#if Input.is_action_pressed("MB_RIGHT"):
-		#Engine.time_scale = 0.1;
-	#else:
-		#Engine.time_scale = 1.0;
+	if Input.is_action_pressed("MB_RIGHT"):
+		Engine.time_scale = 0.1;
+	else:
+		Engine.time_scale = 1.0;
 
 func debug() -> void:
 	if Input.is_action_just_pressed("debug_toggle"):

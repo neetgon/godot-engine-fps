@@ -1,12 +1,22 @@
 extends Node3D
 class_name Weapon;
 
+@export_group("Root")
+@export var use_root_bone : bool = false :
+	set(value):
+		use_root_bone = value;
+		_use_root_bone(value);
+
+@export var skeleton : Skeleton3D;
+
+@export_group("")
 @export var weapon_id : String;
 @export var weapon_animation_player : AnimationPlayer;
-@export var arms_animation_player : AnimationPlayer;
 
-@export var animation_out_speed : float = 1.0;
-@export var animation_in_speed : float = 1.0;
+var arms_animation_player : AnimationPlayer;
+
+@export var animation_holster_speed : float = 1.0;
+@export var animation_draw_speed : float = 1.0;
 
 @export var muzzle_point : Node3D;
 
@@ -42,8 +52,19 @@ func _ready() -> void:
 	current_ammo = max_ammo;
 
 func _process(_delta: float) -> void:
-	if current_weapon_state == WEAPON_STATES.IDLE:
-		pass
+	pass
+
+func _use_root_bone(_value : bool) -> void:
+	if _value == true:
+		var bone_id = skeleton.find_bone("Root")
+		var bone_position = skeleton.get_bone_pose_position(bone_id);
+		position = bone_position;
+		print(bone_position);
+	else:
+		position = Vector3.ZERO;
+
+func inspect() -> void:
+	play_animation(weapon_id + "_inspect");
 
 func fire_weapon() -> void:
 	if current_weapon_state == WEAPON_STATES.IDLE:
@@ -101,16 +122,14 @@ func draw_weapon() -> void:
 	
 	play_audio(draw_audio);
 	visible = true;
-	await play_animation(weapon_id + "_in", animation_in_speed);
+	await play_animation(weapon_id + "_draw", animation_draw_speed);
 	
 	current_weapon_state = WEAPON_STATES.IDLE;
 
-func hide_weapon() -> void:
+func holster() -> void:
 	current_weapon_state = WEAPON_STATES.HIDE;
-	
-	await play_animation(weapon_id + "_out", animation_out_speed);
+	await play_animation(weapon_id + "_holster", animation_holster_speed);
 	visible = false;
-	
 	current_weapon_state = WEAPON_STATES.DISABLED;
 
 func play_audio(audio : AudioStreamOggVorbis, volume : float = 1.0) -> void:
@@ -121,7 +140,8 @@ func play_audio(audio : AudioStreamOggVorbis, volume : float = 1.0) -> void:
 		global_position,
 		volume,
 		false,
-		true
+		true,
+		1.0,
 	);
 
 func animation_is_playing() -> bool:
@@ -135,8 +155,11 @@ func animation_is_playing() -> bool:
 	);
 
 func play_animation(anim : String, speed : float = 1.0) -> void:
+	
 	if not is_instance_valid(weapon_animation_player): return;
 	if not is_instance_valid(arms_animation_player): return;
+	
+	print("playing animation : ", anim);
 	
 	if not weapon_animation_player.has_animation(anim) : return;
 	if not arms_animation_player.has_animation(anim) : return;

@@ -48,7 +48,7 @@ func _ready() -> void:
 		Vector3(-0.15, -0.06, 0.0),
 		Vector3(0, -90, 0)
 	)
-
+	
 	for x in 5:
 		var glock : InventoryItemGui = create_item(
 			"glock_17",
@@ -138,27 +138,23 @@ func drag_item() -> void:
 					item_selected = item
 
 					break
-
 	else:
 		if Input.is_action_just_released("MB_LEFT"):
 			if item_selected != null:
 				var dragged_item : InventoryItemGui = item_selected
 				var original_position := Vector2(save_item_position)
 				var target_position := get_position_in_grid(dragged_item.position)
-
 				item_selected = null
-
+				
 				if not is_free(target_position, dragged_item.inventory_item):
 					occupy_item_raw(
 						save_item_position / INVENTORY_SLOT_SIZE,
 						dragged_item.columns,
 						dragged_item.rows
 					)
-
+					
 					var start_position := dragged_item.position
-
 					var tween := create_tween()
-
 					tween.tween_method(
 						func(value: float) -> void:
 							if is_instance_valid(dragged_item):
